@@ -41,4 +41,5 @@ const unsubscribe = store.subscribe(()=> console.log('Updated State', store.getS
 store.dispatch(buyEgg());
 store.dispatch(buyEgg());
 store.dispatch(buyChicken());
+store.dispatch(buyChicken());
 unsubscribe();
