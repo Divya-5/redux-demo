@@ -1,6 +1,9 @@
 const redux = require('redux');
 const createStore=redux.createStore;
 const combineReducers= redux.combineReducers;
+const reduxLogger=require('redux-logger');
+const applyMiddleware=redux.applyMiddleware;
+const logger=reduxLogger.createLogger();
 const BUY_EGG = 'BUY_EGG'
 const BUY_CHICKEN = 'BUY_CHICKEN'
 //action creators
@@ -48,9 +51,9 @@ const chickenReducer = (state=initialChickenState, action) => {
         egg:eggReducer,
         chicken:chickenReducer
     })
-const store=createStore(rootReducer);
+const store=createStore(rootReducer, applyMiddleware(logger));
 console.log('Initial State', store.getState());
-const unsubscribe = store.subscribe(()=> console.log('Updated State', store.getState()));
+const unsubscribe = store.subscribe(()=> {});
 store.dispatch(buyEgg());
 store.dispatch(buyEgg());
 store.dispatch(buyChicken());
